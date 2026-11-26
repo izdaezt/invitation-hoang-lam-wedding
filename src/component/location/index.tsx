@@ -2,7 +2,11 @@ import { Map } from "./map"
 import CarIcon from "../../icons/car-icon.svg?react"
 import BusIcon from "../../icons/bus-icon.svg?react"
 import { LazyDiv } from "../lazyDiv"
-import { LOCATION, LOCATION_ADDRESS } from "../../const"
+import { LOCATION, LOCATION_ADDRESS, TRANSPORT } from "../../const"
+import CopyIcon from "../../icons/copy-icon.svg?react"
+import { RichLines } from "../richText"
+import { Fragment, useRef, useState } from "react"
+import { copyText } from "../../utils/copy"
 
 /**
  * 오시는 길 정보를 표시하는 컴포넌트입니다.
@@ -23,53 +27,66 @@ export const Location = () => {
         <Map />
       </LazyDiv>
 
-      {/* 대중교통 및 자가용 안내 섹션 */}
+      {/* Hướng dẫn di chuyển (lấy từ src/config/wedding.json) */}
       <LazyDiv className="card location">
-        {/* 대중교통 안내 */}
-        <div className="location-info">
-          <div className="transportation-icon-wrapper">
-            <BusIcon className="transportation-icon" />
-          </div>
-          <div className="heading">Di chuyển</div>
-          <div />
-          <div className="content">
-            * Từ sân bay Đồng Hới
-            <br />
-            Cách trung tâm thành phố khoảng <b>5 km</b>
-            <br />→ Đi taxi hoặc xe công nghệ (Grab, Be) khoảng 10–15 phút
-            <br />
-            * Từ ga Đồng Hới
-            <br />→ Đi taxi / xe công nghệ khoảng 5–10 phút
-          </div>
-          <div />
-          <div className="content">
-            * Xe khách / xe buýt
-            <br />
-            Xuống tại <b>bến xe Đồng Hới</b>
-            <br />→ Đi taxi hoặc xe công nghệ đến địa điểm tiệc.
-          </div>
-        </div>
-
-        {/* Tự lái */}
-        <div className="location-info">
-          <div className="transportation-icon-wrapper">
-            <CarIcon className="transportation-icon" />
-          </div>
-          <div className="heading">Xe cá nhân</div>
-          <div />
-          <div className="content">
-            Dùng Google Maps tìm
-            <br />
-            <b>{LOCATION}</b>
-            <br />
-            - Có bãi đỗ xe miễn phí cho khách mời.
-          </div>
-          <div />
-          <div className="content">
-            <b>※ Vui lòng đến sớm để dễ sắp xếp chỗ đỗ xe.</b>
-          </div>
-        </div>
+        {TRANSPORT.map((section) => {
+          const Icon = section.icon === "car" ? CarIcon : BusIcon
+          return (
+            <div
+              className={"location-info" + (section.heading ? "" : " plain")}
+              key={section.heading ?? section.blocks[0].lines[0]}
+            >
+              {section.heading && (
+                <>
+                  <div className="transportation-icon-wrapper">
+                    <Icon className="transportation-icon" />
+                  </div>
+                  <div className="heading">{section.heading}</div>
+                </>
+              )}
+              {section.blocks.map(({ lines, copy }, i) => (
+                <Fragment key={i}>
+                  {section.heading && <div />}
+                  <div className={"content" + (copy ? " copyable" : "")}>
+                    <div>
+                      <RichLines lines={lines} />
+                    </div>
+                    {copy && <CopyButton text={copy} />}
+                  </div>
+                </Fragment>
+              ))}
+            </div>
+          )
+        })}
       </LazyDiv>
     </>
+  )
+}
+
+/**
+ * Nút sao chép; sau khi sao chép hiện thông báo "Đã sao chép" trong giây lát.
+ */
+const CopyButton = ({ text }: { text: string }) => {
+  const [status, setStatus] = useState<"copied" | "failed" | null>(null)
+  const timeout = useRef<number | null>(null)
+
+  return (
+    <button
+      className="copy-button"
+      aria-label="Sao chép"
+      onClick={async () => {
+        const ok = await copyText(text)
+        setStatus(ok ? "copied" : "failed")
+        if (timeout.current !== null) clearTimeout(timeout.current)
+        timeout.current = window.setTimeout(() => setStatus(null), 2000)
+      }}
+    >
+      <CopyIcon />
+      {status && (
+        <span className={"copy-toast " + status}>
+          {status === "copied" ? "Đã sao chép" : "Sao chép thất bại"}
+        </span>
+      )}
+    </button>
   )
 }

@@ -4,7 +4,7 @@ import {
   GROOM_FULLNAME,
   LOCATION,
   WEDDING_DATE,
-  WEDDING_DATE_FORMAT,
+  WEDDING_DATE_TEXT,
 } from "../../const"
 import { Button } from "../button"
 import { Modal } from "../modal"
@@ -96,7 +96,7 @@ export const AttendanceInfo = () => {
           <div className="wedding-info">
             <HeartIcon /> Chú rể {GROOM_FULLNAME} & Cô dâu {BRIDE_FULLNAME}
             <br />
-            <CalendarIcon /> {WEDDING_DATE.format(WEDDING_DATE_FORMAT)}
+            <CalendarIcon /> {WEDDING_DATE_TEXT}
             <br />
             <MarkerIcon /> {LOCATION}
           </div>

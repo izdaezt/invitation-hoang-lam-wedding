@@ -1,0 +1,137 @@
+{
+  "_readme": "File cấu hình duy nhất của thiệp cưới. Sửa file này rồi lưu — mọi trang sẽ tự cập nhật. 'common' dùng chung cho cả 2 trang; mỗi mục trong 'pages' là một trang riêng (đường dẫn = 'path'). 'location' có 'lat' (vĩ độ) và 'lng' (kinh độ) để ghim bản đồ — lấy bằng cách chuột phải vào điểm trên Google Maps rồi bấm vào số tọa độ để copy (số đầu là lat, số sau là lng). Trong 'blocks', mỗi ô là một mảng dòng chữ, hoặc {'lines': [...], 'copy': '...'} để có nút sao chép; dùng {name} và {address} thay cho tên/địa chỉ địa điểm. 'common.siteUrl' là tên miền dùng khi chia sẻ thiệp. 'common.donationTitles' (tiêu đề) và 'common.donationVerses' (câu thơ) hiện ngẫu nhiên khi bấm nút Tài khoản nhà trai/nhà gái. Trong các đoạn chữ, bọc **như vậy** để in đậm.",
+  "common": {
+    "siteUrl": "https://hoang-lam.vercel.app",
+    "timezone": "Asia/Ho_Chi_Minh",
+    "groom": {
+      "fullName": "Nguyễn Hoàng",
+      "firstName": "Hoàng",
+      "title": "Con trai",
+      "father": "Nguyễn Hoài Anh",
+      "mother": "Nguyễn Thị Lan Phương",
+      "contacts": [
+        {
+          "relation": "Chú rể",
+          "name": "Nguyễn Hoàng",
+          "phone": "",
+          "account": ""
+        },
+        {
+          "relation": "Bố chú rể",
+          "name": "Nguyễn Hoài Anh",
+          "phone": "",
+          "account": ""
+        },
+        {
+          "relation": "Mẹ chú rể",
+          "name": "Nguyễn Thị Lan Phương",
+          "phone": "",
+          "account": ""
+        }
+      ]
+    },
+    "bride": {
+      "fullName": "Hoàng Lam",
+      "firstName": "Lam",
+      "title": "Con gái",
+      "father": "Nguyễn Xuân Hải",
+      "mother": "Nguyễn Thị Hải Lý",
+      "contacts": [
+        {
+          "relation": "Cô dâu",
+          "name": "Lam",
+          "phone": "",
+          "account": ""
+        },
+        {
+          "relation": "Bố cô dâu",
+          "name": "Nguyễn Xuân Hải",
+          "phone": "",
+          "account": ""
+        },
+        {
+          "relation": "Mẹ cô dâu",
+          "name": "Nguyễn Thị Hải Lý",
+          "phone": "",
+          "account": ""
+        }
+      ]
+    },
+    "donationTitles": ["Vắng mặt nghỉ chơi.", "Lời mời không có nút từ chối.", "Không đến? Thử coi! 😤", "Không đi? Sổ đen liền.", "Năn nỉ mà!"],
+    "donationVerses": [
+      ["Ngày vui thiếu bạn sao đành", "Đến đây chung chén cho thành nghĩa xưa"],
+      ["Cỗ ngon rượu ngọt đầy bàn", "Thiếu bạn một ghế, ngỡ ngàng cả mâm"],
+      ["Xin sếp một bữa nghỉ làm", "Cưới đứa bạn thân, sếp cam lòng thôi"],
+      ["Quà cáp chẳng cần mang theo", "Chỉ cần mang đến trong veo nụ cười"],
+      ["Cưới thì một lần trong đời", "Vắng bạn tụi mình rối bời cả tim"],
+      ["Bao lần mình đi cưới người", "Giờ đến lượt mình, bạn cười chối sao?"],
+      ["Thanh xuân có bạn cùng đi", "Ngày vui thiếu bạn còn gì là vui"],
+      ["Đồ ăn ngon lắm bạn ơi", "Không ngon tụi mình xin mời lần sau"],
+      ["Ghế ngồi đã đặt tên bạn", "Đến trễ cũng được, đừng toan vắng mặt"],
+      ["Đến đây chụp tấm ảnh chung", "Mai sau lật lại nhớ cùng nhau lâu 💍"]
+    ],
+    "invitation": [
+      ["Giữa ngày hè rực rỡ hương sắc", "Chúng tôi trân trọng kính mời", "quý khách đến chung vui trong ngày trọng đại."],
+      ["Khi nắng gắt, sẽ che chở cho nhau;", "khi mưa về, sẽ là chiếc ô của nhau,", "cùng nhau nên vợ nên chồng."],
+      ["Rất mong quý khách đến dự", "và chúc phúc cho chúng tôi."]
+    ]
+  },
+  "_redirect": "Vào trang chủ '/' sẽ tự chuyển tới trang có ngày cưới gần nhất chưa qua (tính hết ngày cưới). Nếu tất cả đã qua thì chuyển tới trang cảm ơn bên dưới.",
+  "thankYou": { "path": "/cam-on", "title": "Xin chân thành cảm ơn", "lines": ["Lễ cưới của chúng tôi đã diễn ra tốt đẹp.", "Cảm ơn quý khách đã đến chung vui,", "gửi lời chúc phúc và dành cho chúng tôi", "những tình cảm thật đẹp trong ngày trọng đại."] },
+  "pages": [
+    {
+      "path": "/nha-trai",
+      "_note": "Lễ cưới nhà trai.",
+      "date": "2026-12-16 17:00",
+      "holidays": [],
+      "location": {
+        "name": "Nhà hàng Tiệc cưới Royal Queen",
+        "address": "57 Nguyễn Hữu Cảnh, Đồng Hới, Tỉnh Quảng Trị",
+        "lat": 17.4650351,
+        "lng": 106.6191828
+      },
+      "meal": { "time": "16:30 – 20:00", "place": "Sảnh tiệc tầng 1" },
+      "transport": [
+        {
+          "icon": "car",
+          "heading": "Di chuyển",
+          "blocks": [
+            ["Dùng Google Maps tìm"],
+            { "lines": ["**{name}**"], "copy": "{name}" },
+            ["hoặc"],
+            { "lines": ["**{address}**"], "copy": "{address}" },
+            ["hoặc đơn giản hơn, bấm nút **Chỉ đường** ở bản đồ."],
+            ["- Có bãi đỗ xe cho khách mời.", "**※ Vui lòng đến sớm để dễ sắp xếp chỗ đỗ xe.**"]
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/nha-gai",
+      "_note": "Lễ cưới nhà gái. Không có 'invitation' riêng nên dùng chung 'common.invitation'.",
+      "date": "2026-12-13 11:00",
+      "holidays": [],
+      "location": {
+        "name": "Trung tâm tổ chức sự kiện Sông Gianh",
+        "address": "23 Lý Thường Kiệt, Ba Đồn, Quảng Trị",
+        "lat": 17.751928,
+        "lng": 106.4250373
+      },
+      "meal": { "time": "10:30 – 14:00", "place": "Sảnh tiệc tầng 1" },
+      "transport": [
+        {
+          "icon": "car",
+          "heading": "Di chuyển",
+          "blocks": [
+            ["Dùng Google Maps tìm"],
+            { "lines": ["**{name}**"], "copy": "{name}" },
+            ["hoặc"],
+            { "lines": ["**{address}**"], "copy": "{address}" },
+            ["hoặc đơn giản hơn, bấm nút **Chỉ đường** ở bản đồ."],
+            ["- Có bãi đỗ xe cho khách mời.", "**※ Vui lòng đến sớm để dễ sắp xếp chỗ đỗ xe.**"]
+          ]
+        }
+      ]
+    }
+  ]
+}

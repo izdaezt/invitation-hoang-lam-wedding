@@ -7,9 +7,8 @@ import { createHtmlPlugin } from "vite-plugin-html"
 import {
   GROOM_FULLNAME,
   BRIDE_FULLNAME,
-  WEDDING_DATE,
   LOCATION,
-  WEDDING_DATE_FORMAT,
+  WEDDING_DATE_TEXT,
 } from "./src/const"
 
 const distFolder = "build"
@@ -27,7 +26,7 @@ export default defineConfig({
         data: {
           GROOM_FULLNAME,
           BRIDE_FULLNAME,
-          DESCRIPTION: `${WEDDING_DATE.format(WEDDING_DATE_FORMAT)} – ${LOCATION}`,
+          DESCRIPTION: `${WEDDING_DATE_TEXT} – ${LOCATION}`,
         },
       },
     }),

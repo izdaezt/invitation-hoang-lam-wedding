@@ -10,6 +10,7 @@ import {
   GROOM_MOTHER,
   GROOM_TITLE,
   BRIDE_TITLE,
+  INVITATION,
 } from "../../const"
 import { Modal } from "../modal"
 import { Button } from "../button"
@@ -32,38 +33,47 @@ export const Invitation = () => {
 
         <div className="break" />
 
-        {/* 초대 문구 */}
-        <div className="content">Giữa ngày hè rực rỡ hương sắc</div>
-        <div className="content">Chúng tôi trân trọng kính mời</div>
-        <div className="content">quý khách đến chung vui trong ngày trọng đại.</div>
-        <div className="break" />
-        <div className="content">Khi nắng gắt, sẽ che chở cho nhau;</div>
-        <div className="content">khi mưa về, sẽ là chiếc ô của nhau,</div>
-        <div className="content">cùng nhau nên vợ nên chồng.</div>
-        <div className="break" />
-        <div className="content">Rất mong quý khách đến dự</div>
-        <div className="content">và chúc phúc cho chúng tôi.</div>
+        {/* Lời mời (lấy từ src/config/wedding.json) */}
+        {INVITATION.map((group, i) => (
+          <Fragment key={i}>
+            {group.map((line, j) => (
+              <div className="content" key={j}>
+                {line}
+              </div>
+            ))}
+            <div className="break" />
+          </Fragment>
+        ))}
 
-        <div className="break" />
-
-        {/* 혼주 및 신랑 정보 */}
-        <div className="name">
-          Ông {GROOM_FATHER} · Bà {GROOM_MOTHER}
-          <span className="relation">
-            {" "}
-            – <span className="relation-name">{GROOM_TITLE}</span>
-          </span>{" "}
-          {GROOM_FULLNAME}
-        </div>
-        {/* 혼주 및 신부 정보 */}
-        <div className="name">
-          Ông {BRIDE_FATHER} · Bà {BRIDE_MOTHER}
-          <span className="relation">
-            {" "}
-            – <span className="relation-name">{BRIDE_TITLE}</span>
-          </span>{" "}
-          {BRIDE_FULLNAME}
-        </div>
+        {(["groom", "bride"] as const).map((side) => {
+          const p =
+            side === "groom"
+              ? {
+                  father: GROOM_FATHER,
+                  mother: GROOM_MOTHER,
+                  title: GROOM_TITLE,
+                  name: GROOM_FULLNAME,
+                }
+              : {
+                  father: BRIDE_FATHER,
+                  mother: BRIDE_MOTHER,
+                  title: BRIDE_TITLE,
+                  name: BRIDE_FULLNAME,
+                }
+          return (
+            <div className="family" key={side}>
+              <div className="line">
+                <span className="role">Ông</span> <b>{p.father}</b>
+              </div>
+              <div className="line">
+                <span className="role">Bà</span> <b>{p.mother}</b>
+              </div>
+              <div className="line">
+                <span className="role">{p.title}</span> <b>{p.name}</b>
+              </div>
+            </div>
+          )
+        })}
 
         <div className="break" />
 

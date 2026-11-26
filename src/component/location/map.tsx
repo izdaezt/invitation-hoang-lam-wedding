@@ -3,12 +3,17 @@ import LockIcon from "../../icons/lock-icon.svg?react"
 import UnlockIcon from "../../icons/unlock-icon.svg?react"
 import { LOCATION, LOCATION_ADDRESS, WEDDING_HALL_POSITION } from "../../const"
 
-const [LNG, LAT] = WEDDING_HALL_POSITION
+// Có tọa độ thì dùng tọa độ, không thì tìm theo tên + địa chỉ
+const QUERY = encodeURIComponent(
+  WEDDING_HALL_POSITION
+    ? `${WEDDING_HALL_POSITION[1]},${WEDDING_HALL_POSITION[0]}`
+    : `${LOCATION}, ${LOCATION_ADDRESS}`,
+)
 
 // Google Maps embed (không cần API key)
-const EMBED_URL = `https://maps.google.com/maps?q=${LAT},${LNG}&z=15&hl=vi&output=embed`
-const VIEW_URL = `https://www.google.com/maps/search/?api=1&query=${LAT},${LNG}`
-const DIRECTIONS_URL = `https://www.google.com/maps/dir/?api=1&destination=${LAT},${LNG}`
+const EMBED_URL = `https://maps.google.com/maps?q=${QUERY}&z=16&hl=vi&output=embed`
+const VIEW_URL = `https://www.google.com/maps/search/?api=1&query=${QUERY}`
+const DIRECTIONS_URL = `https://www.google.com/maps/dir/?api=1&destination=${QUERY}`
 
 /**
  * Bản đồ Google Maps và các nút mở bản đồ / chỉ đường.
@@ -34,7 +39,11 @@ export const Map = () => {
     <>
       <div className="map-wrapper">
         {locked && (
-          <div className="lock" onTouchStart={showMessage} onMouseDown={showMessage}>
+          <div
+            className="lock"
+            onTouchStart={showMessage}
+            onMouseDown={showMessage}
+          >
             {showLockMessage && (
               <div className="lock-message">
                 <LockIcon /> Nhấn nút ổ khóa để mở khóa

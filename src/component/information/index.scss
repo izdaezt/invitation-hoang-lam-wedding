@@ -10,8 +10,11 @@
     .label {
       position: absolute;
       left: 50%;
-      top: -1rem;
-      transform: translateX(-50%);
+      top: 0;
+      // Căn giữa nhãn đúng trên đường viền của khung (cả ngang lẫn dọc)
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+      line-height: 1.4;
       padding: 0.5rem 2rem 0.5rem 2rem;
       border-radius: 1rem;
       background-color: var(--alt-bg-color);
@@ -32,12 +35,31 @@
       text-align: center;
       font-size: 1.2rem;
       color: var(--theme-color);
-      padding-bottom: 1rem;
+      padding: 0.4rem 0 0.7rem;
       border-bottom: 1px solid var(--dark-grey-color);
     }
   }
   .content {
     padding: 0 0.7rem 0.7rem 0.7rem;
+
+    .verse {
+      margin: 1.1rem 0 1.3rem;
+      text-align: center;
+      line-height: 1.8;
+      font-size: 0.92rem;
+      text-wrap: balance; // tránh để rơi một chữ lẻ xuống dòng cuối
+      color: var(--theme-color);
+    }
+
+    .account-group {
+      border-top: 1px dotted var(--dark-grey-color);
+      padding-top: 0.8rem;
+      .group-title {
+        text-align: center;
+        font-size: 0.9rem;
+        opacity: 0.7;
+      }
+    }
 
     .account-info {
       margin-top: 1rem;

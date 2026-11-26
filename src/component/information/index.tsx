@@ -1,9 +1,16 @@
 import { useState } from "react"
-import { BRIDE_INFO, GROOM_INFO } from "../../const"
+import {
+  BRIDE_INFO,
+  DONATION_TITLES,
+  DONATION_VERSES,
+  GROOM_INFO,
+  MEAL,
+} from "../../const"
 import { STATIC_ONLY } from "../../env"
 import { Button } from "../button"
 import { LazyDiv } from "../lazyDiv"
 import { Modal } from "../modal"
+import { copyText } from "../../utils/copy"
 import { AttendanceInfo } from "./attendance"
 
 /**
@@ -16,9 +23,9 @@ export const Information1 = () => {
       <div className="info-card">
         <div className="label">Thông tin tiệc</div>
         <div className="content">
-          Giờ tiệc: 11:30 – 14:00
+          Giờ tiệc: {MEAL.time}
           <br />
-          Địa điểm: Sảnh tiệc tầng 1
+          Địa điểm: {MEAL.place}
         </div>
       </div>
     </>
@@ -31,7 +38,24 @@ export const Information1 = () => {
  */
 export const Information2 = () => {
   const donationModalState = useState(false)
-  const [isGroom, setIsGroom] = useState(true)
+  // Câu thơ ngẫu nhiên, chọn lại mỗi lần mở popup
+  const [verse, setVerse] = useState<string[]>(DONATION_VERSES[0])
+  const [title, setTitle] = useState<string>(DONATION_TITLES[0])
+
+  const pick = <T,>(list: T[]) => list[Math.floor(Math.random() * list.length)]
+
+  const open = () => {
+    setTitle(pick(DONATION_TITLES))
+    setVerse(pick(DONATION_VERSES))
+    donationModalState[1](true)
+  }
+
+  const groups = [
+    { title: "Nhà trai", list: GROOM_INFO },
+    { title: "Nhà gái", list: BRIDE_INFO },
+  ]
+    .map((g) => ({ ...g, list: g.list.filter(({ account }) => !!account) }))
+    .filter((g) => g.list.length > 0)
 
   return (
     <>
@@ -47,67 +71,57 @@ export const Information2 = () => {
 
         <div className="break" />
 
-        <Button
-          style={{ width: "100%" }}
-          onClick={() => {
-            donationModalState[1](true)
-            setIsGroom(true)
-          }}
-        >
+        <Button style={{ width: "100%" }} onClick={open}>
           Tài khoản nhà trai
         </Button>
         <div className="break" />
-        <Button
-          style={{ width: "100%" }}
-          onClick={() => {
-            donationModalState[1](true)
-            setIsGroom(false)
-          }}
-        >
+        <Button style={{ width: "100%" }} onClick={open}>
           Tài khoản nhà gái
         </Button>
       </div>
 
-      {/* 계좌 정보 모달 */}
+      {/* Popup chung cho cả nhà trai và nhà gái */}
       <Modal
         modalState={donationModalState}
         className="donation-modal"
         closeOnClickBackground={true}
       >
         <div className="header">
-          <div className="title">
-            {isGroom ? "Tài khoản nhà trai" : "Tài khoản nhà gái"}
-          </div>
+          <div className="title">{title}</div>
         </div>
         <div className="content">
-          {(isGroom ? GROOM_INFO : BRIDE_INFO)
-            .filter(({ account }) => !!account)
-            .map(({ relation, name, account }) => (
-              <div className="account-info" key={relation}>
-                <div>
-                  <div className="name">
-                    <span className="relation">{relation}</span> {name}
+          <div className="verse">
+            {verse.map((line, i) => (
+              <div key={i}>{line}</div>
+            ))}
+          </div>
+          {groups.map(({ title, list }) => (
+            <div className="account-group" key={title}>
+              <div className="group-title">{title}</div>
+              {list.map(({ relation, name, account }) => (
+                <div className="account-info" key={relation}>
+                  <div>
+                    <div className="name">
+                      <span className="relation">{relation}</span> {name}
+                    </div>
+                    <div>{account}</div>
                   </div>
-                  <div>{account}</div>
-                </div>
-                <Button
-                  className="copy-button"
-                  onClick={async () => {
-                    if (account) {
-                      try {
-                        // 계좌번호 복사 기능
-                        await navigator.clipboard.writeText(account)
+                  <Button
+                    className="copy-button"
+                    onClick={async () => {
+                      if (await copyText(account)) {
                         alert(account + "\nĐã sao chép.")
-                      } catch {
+                      } else {
                         alert("Sao chép thất bại.")
                       }
-                    }
-                  }}
-                >
-                  Sao chép
-                </Button>
-              </div>
-            ))}
+                    }}
+                  >
+                    Sao chép
+                  </Button>
+                </div>
+              ))}
+            </div>
+          ))}
         </div>
         <div className="footer">
           <Button

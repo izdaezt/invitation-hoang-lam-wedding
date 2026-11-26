@@ -97,6 +97,10 @@
     row-gap: 0.7rem;
     margin: 1rem 0;
 
+    &.plain {
+      grid-template-columns: 1fr;
+    }
+
     > * {
       align-self: center;
     }
@@ -121,6 +125,47 @@
     .content {
       font-size: 0.9rem;
       line-height: 1.4;
+
+      &.copyable {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.6rem;
+        padding: 0.5rem 0.7rem;
+        border: 1px solid var(--dark-grey-color);
+        border-radius: 0.4rem;
+      }
+
+      .copy-button {
+        position: relative;
+        z-index: 3; // nổi lên trên lớp hiệu ứng cánh hoa (.bg-effect, z-index: 2)
+        flex-shrink: 0;
+        width: 1.8rem;
+        height: 1.8rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        svg {
+          width: 1.1rem;
+          height: 1.1rem;
+          fill: var(--theme-color);
+        }
+        .copy-toast {
+          position: absolute;
+          bottom: 120%;
+          right: 0;
+          white-space: nowrap;
+          font-size: 0.75rem;
+          padding: 0.3rem 0.6rem;
+          border-radius: 0.3rem;
+          background-color: var(--dark-color);
+          color: var(--white-color);
+          pointer-events: none;
+          &.failed {
+            background-color: #c0392b;
+          }
+        }
+      }
     }
   }
 }

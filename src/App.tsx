@@ -10,6 +10,8 @@ import { GuestBook } from "./component/guestbook"
 import { LazyDiv } from "./component/lazyDiv"
 import { ShareButton } from "./component/shareButton"
 import { STATIC_ONLY } from "./env"
+import { IS_THANK_YOU } from "./const"
+import { ThankYou } from "./component/thankYou"
 
 /**
  * 메인 애플리케이션 컴포넌트입니다.
@@ -18,6 +20,17 @@ import { STATIC_ONLY } from "./env"
  * @returns {JSX.Element} 애플리케이션 화면
  */
 function App() {
+  if (IS_THANK_YOU) {
+    return (
+      <div className="background">
+        <BGEffect />
+        <div className="card-view">
+          <ThankYou />
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="background">
       {/* 배경 애니메이션 효과 (예: 꽃잎 내리기) */}

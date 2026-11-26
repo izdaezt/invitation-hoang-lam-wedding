@@ -3,9 +3,14 @@ import {
   GROOM_FULLNAME,
   LOCATION,
   WEDDING_DATE,
-  WEDDING_DATE_FORMAT,
+  WEDDING_LUNAR_TEXT,
+  WEDDING_SOLAR_TEXT,
+  WEDDING_TIME_TEXT,
+  WEDDING_WEEKDAY_TEXT,
 } from "../../const"
 import { COVER_IMAGE } from "../../images"
+import HeartIcon from "../../icons/heart-icon.svg?react"
+import ClockIcon from "../../icons/clock-icon.svg?react"
 import { LazyDiv } from "../lazyDiv"
 
 const DAY_OF_WEEK = [
@@ -43,16 +48,25 @@ export const Cover = () => {
       <div className="image-wrapper">
         <img src={COVER_IMAGE} alt="sample" />
       </div>
-      <div className="subtitle">Trân trọng kính mời đến dự lễ thành hôn của</div>
+      <div className="subtitle">
+        Trân trọng kính mời đến dự lễ thành hôn của
+      </div>
       {/* 이름 표시 */}
       <div className="names">
         {GROOM_FULLNAME}
-        <div className="divider" />
+        <HeartIcon className="heart" />
         {BRIDE_FULLNAME}
       </div>
       {/* 예식 정보 (포맷팅된 날짜 및 장소) */}
-      <div className="info">{WEDDING_DATE.format(WEDDING_DATE_FORMAT)}</div>
-      <div className="info">{LOCATION}</div>
+      <div className="info time">
+        <ClockIcon className="info-icon" /> {WEDDING_TIME_TEXT} –{" "}
+        {WEDDING_WEEKDAY_TEXT}
+      </div>
+      <div className="info">{WEDDING_SOLAR_TEXT}</div>
+      <div className="info lunar">({WEDDING_LUNAR_TEXT})</div>
+      <div className="info place">
+        Tại: <b>{LOCATION}</b>
+      </div>
     </LazyDiv>
   )
 }
