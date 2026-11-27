@@ -1,7 +1,15 @@
 {
-  "_readme": "File cấu hình duy nhất của thiệp cưới. Sửa file này rồi lưu — mọi trang sẽ tự cập nhật. 'common' dùng chung cho cả 2 trang; mỗi mục trong 'pages' là một trang riêng (đường dẫn = 'path'). 'location' có 'lat' (vĩ độ) và 'lng' (kinh độ) để ghim bản đồ — lấy bằng cách chuột phải vào điểm trên Google Maps rồi bấm vào số tọa độ để copy (số đầu là lat, số sau là lng). Trong 'blocks', mỗi ô là một mảng dòng chữ, hoặc {'lines': [...], 'copy': '...'} để có nút sao chép; dùng {name} và {address} thay cho tên/địa chỉ địa điểm. 'common.siteUrl' là tên miền dùng khi chia sẻ thiệp. 'common.donationTitles' (tiêu đề) và 'common.donationVerses' (câu thơ) hiện ngẫu nhiên khi bấm nút Tài khoản nhà trai/nhà gái. Trong các đoạn chữ, bọc **như vậy** để in đậm.",
+  "_readme": "File cấu hình duy nhất của thiệp cưới. Sửa file này rồi lưu — mọi trang sẽ tự cập nhật. 'common' dùng chung cho cả 2 trang; mỗi mục trong 'pages' là một trang riêng (đường dẫn = 'path'). 'location' có 'lat' (vĩ độ) và 'lng' (kinh độ) để ghim bản đồ — lấy bằng cách chuột phải vào điểm trên Google Maps rồi bấm vào số tọa độ để copy (số đầu là lat, số sau là lng). Trong 'blocks', mỗi ô là một mảng dòng chữ, hoặc {'lines': [...], 'copy': '...'} để có nút sao chép; dùng {name} và {address} thay cho tên/địa chỉ địa điểm. 'common.siteUrl' là tên miền dùng khi chia sẻ thiệp. 'common.donationTitles' (tiêu đề) và 'common.donationVerses' (câu thơ) hiện ngẫu nhiên khi bấm nút Tài khoản nhà trai/nhà gái. 'common.music': nhạc nền YouTube — playlistId lấy từ link (phần sau 'list='), startIndex là bài thứ mấy trong playlist (0 là bài đầu), startSeconds là bắt đầu phát từ giây thứ bao nhiêu của bài đó, volume 0–100, enabled=false để tắt nhạc. Trong các đoạn chữ, bọc **như vậy** để in đậm.",
   "common": {
     "siteUrl": "https://hoang-lam.vercel.app",
+    "music": {
+      "enabled": true,
+      "playlistId": "OLAK5uy_ne1_0R_7K0tPt_14lRL43K8mpa_Pu5Cdw",
+      "startIndex": 0,
+      "startSeconds": 19,
+      "volume": 60,
+      "loop": true
+    },
     "timezone": "Asia/Ho_Chi_Minh",
     "groom": {
       "fullName": "Nguyễn Hoàng",

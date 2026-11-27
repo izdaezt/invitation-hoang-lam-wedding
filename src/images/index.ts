@@ -1,3 +1,4 @@
+import logoImage from "./logo.png"
 import coverImage from "./cover.png"
 import image1 from "./image1.png"
 import image2 from "./image2.png"
@@ -34,3 +35,8 @@ export const GALLERY_IMAGES = [
   image11,
   image12,
 ]
+
+/**
+ * Logo của cô dâu chú rể (hiện trong mục Invitation)
+ */
+export const LOGO_IMAGE = logoImage

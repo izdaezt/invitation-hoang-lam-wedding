@@ -134,6 +134,8 @@ export const TRANSPORT = (page.transport as TransportSection[]).map(
     }),
   }),
 )
+/** Cấu hình nhạc nền (YouTube) */
+export const MUSIC = common.music
 export const DONATION_TITLES: string[] = common.donationTitles
 export const DONATION_VERSES: string[][] = common.donationVerses
 export const INVITATION: string[][] =

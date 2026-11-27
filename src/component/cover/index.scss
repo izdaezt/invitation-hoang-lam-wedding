@@ -1,4 +1,8 @@
 .cover {
+  @media (width > 980px) {
+    justify-content: flex-start;
+  }
+
   .wedding-date {
     margin-top: 2rem;
     font-size: 1.5rem;

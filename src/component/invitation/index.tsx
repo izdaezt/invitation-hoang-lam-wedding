@@ -12,6 +12,7 @@ import {
   BRIDE_TITLE,
   INVITATION,
 } from "../../const"
+import { LOGO_IMAGE } from "../../images"
 import { Modal } from "../modal"
 import { Button } from "../button"
 import { LazyDiv } from "../lazyDiv"
@@ -29,6 +30,7 @@ export const Invitation = () => {
   return (
     <>
       <LazyDiv className="card invitation">
+        <img className="logo" src={LOGO_IMAGE} alt="Hoàng & Lam" />
         <h2 className="english">Invitation</h2>
 
         <div className="break" />

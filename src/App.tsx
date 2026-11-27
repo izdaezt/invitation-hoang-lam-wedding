@@ -11,6 +11,7 @@ import { LazyDiv } from "./component/lazyDiv"
 import { ShareButton } from "./component/shareButton"
 import { STATIC_ONLY } from "./env"
 import { IS_THANK_YOU } from "./const"
+import { MusicPlayer } from "./component/musicPlayer"
 import { ThankYou } from "./component/thankYou"
 
 /**
@@ -24,6 +25,7 @@ function App() {
     return (
       <div className="background">
         <BGEffect />
+        <MusicPlayer />
         <div className="card-view">
           <ThankYou />
         </div>
@@ -33,6 +35,7 @@ function App() {
 
   return (
     <div className="background">
+      <MusicPlayer />
       {/* 배경 애니메이션 효과 (예: 꽃잎 내리기) */}
       <BGEffect />
       <div className="card-view">

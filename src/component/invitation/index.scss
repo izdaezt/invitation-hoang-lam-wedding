@@ -1,15 +1,36 @@
 .invitation {
+  .logo {
+    width: 6.5rem;
+    height: 6.5rem;
+    margin: 0 auto 0.4rem;
+  }
+
+  // Máy tính: hai khung bìa / lời mời nằm cạnh nhau — xếp nội dung từ trên xuống
+  // để logo luôn thẳng hàng với dòng ngày tháng ở bìa (căn chỉnh bằng margin-top: 0.28rem)
+  @media (width > 980px) {
+    justify-content: flex-start;
+    .logo {
+      margin-top: 0.28rem;
+    }
+  }
+
+  // Thu gọn khoảng cách dòng để logo không làm mục này quá dài
+  div.break {
+    height: 0.8rem;
+  }
+
   .content {
-    margin-top: 0.8rem;
-    margin-bottom: 0.8rem;
+    margin-top: 0.35rem;
+    margin-bottom: 0.35rem;
     font-size: 0.9rem;
+    line-height: 1.7;
   }
 
   .family {
-    margin-top: 1.2rem;
-    margin-bottom: 1.2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     font-size: 1.05rem;
-    line-height: 1.9;
+    line-height: 1.8;
 
     .role {
       font-size: 0.85rem;
